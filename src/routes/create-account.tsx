@@ -16,16 +16,20 @@ export default function CreateAccount() {
         const {target: {name, value}} = e;
         if(name === "name") {
             setName(value)
-        } else if(name==="email") {
+        } else if(name === "email") {
             setEmail(value);
         } else if(name === "password") {
             setPassword(value);
         }
     }
+    const onSubmit = (e : React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        console.log(name, email, password);
+    }
 
     return (
         <Wrapper>
-            <Form>
+            <Form onSubmit={onSubmit}>
                 <Input 
                     onChange={onChange}
                     name="name" 
@@ -43,6 +47,7 @@ export default function CreateAccount() {
                     required
                 />
                 <Input 
+                    onChange={onChange}
                     name="password" 
                     value={password}
                     placeholder="Password" 
